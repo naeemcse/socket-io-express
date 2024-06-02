@@ -12,9 +12,21 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log("one user is disconnected!");
     })
-    setTimeout(function (){
-        socket.send('Data comes from Socket Backend');
-    },10000)
+    // set time out
+
+    // setTimeout(function (){
+    //     socket.send('Data comes from Socket Backend');
+    // },10000)
+
+// setInerval
+    setInterval(function (){
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+      socket.send(hours + ":" + minutes + ":" + seconds);
+    },2000)
+
 })
 
 app.get('/', (req, res) => {
