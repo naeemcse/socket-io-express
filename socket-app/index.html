@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Socket I/O App</title>
+</head>
+<body>
+<h1> Hello Bangladesh </h1>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    socket.on('message',function (msg){
+        document.write(msg) ;
+    })
+</script>
+</body>
+</html>
