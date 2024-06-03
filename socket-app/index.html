@@ -10,16 +10,43 @@
 <!-- Hre to show data  -->
 <h1 id="myTime"></h1>
 
+<input type="text" id="name">
+<button onclick="send()"> Send</button>
+
+<div id="body" ></div>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     const socket = io();
-    // socket.on('message',function (msg){
-    //     document.write(msg) ;
-    // })
+   /*  socket.on('message',function (msg){
+         document.write(msg) ;
+    })*/
+
+    // messege predefined event
+    /*
     socket.on('message',function (msg){
         document.getElementById('myTime').innerHTML=" ";
         document.getElementById('myTime').innerHTML=msg ;
+    })*/
+// emit function
+    socket.on('myEvent',function (msg){
+        document.getElementById('myTime').innerHTML=" ";
+        document.getElementById('myTime').innerHTML=msg ;
     })
+
+
+    // send data frontend to backend
+
+    function send(){
+        let  name = document.getElementById('name').value ;
+        socket.send(name)
+    //     custom event
+        socket.emit('customEvent',name)
+    }
+const nsp = io("/buy") ;
+    nsp.on('myEvent1',function (data){
+        document.getElementById('body').innerHTML=data ;
+    })
+
 </script>
 </body>
 </html>
